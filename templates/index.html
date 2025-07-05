@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modular Payload Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Slide<h3>Your Modular Payload Generator</h3></h1>
+        <form method="POST">
+            <div>
+                <label for="xss">XSS Type</label>
+                <select name="xss" id="xss">
+                    <option value="">None</option>
+                    <option value="reflected">Reflected</option>
+                    <option value="stored">Stored</option>
+                    <option value="dom">DOM</option>
+                    <option value="evasion">Evasion</option>
+                    <option value="all">All</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="sqli">SQLi Type</label>
+                <select name="sqli" id="sqli">
+                    <option value="">None</option>
+                    <option value="error">Error</option>
+                    <option value="union">Union</option>
+                    <option value="blind">Blind</option>
+                    <option value="all">All</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="cmdi">CMDi OS</label>
+                <select name="cmdi" id="cmdi">
+                    <option value="">None</option>
+                    <option value="linux">Linux</option>
+                    <option value="windows">Windows</option>
+                    <option value="all">All</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="encode">Encoding</label>
+                <select name="encode" id="encode">
+                    <option value="">None</option>
+                    <option value="base64">Base64</option>
+                    <option value="url">URL</option>
+                    <option value="hex">Hex</option>
+                    <option value="unicode">Unicode</option>
+                </select>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" name="obfuscate" id="obfuscate">
+                <label for="obfuscate">Obfuscate</label>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" name="appendfile" id="appendfile">
+                <label for="appendfile">Append to File</label>
+            </div>
+
+            <button type="submit">Generate Payloads</button>
+
+            <div>
+                <label for="output">Generated Payloads</label>
+                <textarea id="output" class="output-box" readonly>{{ payloads | join('\n') if payloads else '' }}</textarea>
+            </div>
+        </form>
+        <footer>&copy; 2025 Payload Generator</footer>
+    </div>
+</body>
+</html>
